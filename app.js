@@ -8,8 +8,18 @@ var item = '<div class="item"><input type="checkbox"></div>';
 // track so we know where to place the next  to do list
 var numRows = 0;
 
-// create a new list
+// constructs the html for a list
 function createList() {
+  var list = document.createElement("div");
+  var listClass = document.createAttribute("class");       // Create a "class" attribute
+  listClass.value = "col-sm";                           // Set the value of the class attribute
+  list.setAttributeNode(listClass);
+  list.innerHTML = '<div class="to-do"><div class="complete"><i class="fas fa-check"></i></div></div>';
+}
+
+// inserts the newly-created list
+// tracks which row we are on, adds new rows as needed
+function insertList() {
 
 }
 
