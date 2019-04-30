@@ -20,7 +20,8 @@ function createList() {
 // inserts the newly-created list
 // tracks which row we are on, adds new rows as needed
 function insertList() {
-
+  var rows = document.querySelectorAll(".container .row");
+  console.log(rows);
 }
 
 // remove a list
@@ -34,10 +35,24 @@ function createItem() {
 }
 
 // set up initial scaffolding of the page
-function init() {
+function main() {
   // Event Listeners
 
-  document.getElementById("create-list").addEventListener("click", function(){
-    document.getElementById("demo").innerHTML = "Hello World";
+  // create and insert a list
+  var createButton = document.getElementById("create-list");
+  createButton.addEventListener("click", function(){
+    createList();
+    insertList();
   });
+
+  // delete and remove a list
+
+
+  // create and insert an item
+
+
+  //
 }
+
+// run main program
+main();
