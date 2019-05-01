@@ -1,12 +1,27 @@
 
-// Lists and items
-var list = '<div class="col-sm"><div class="to-do"></div></div>';
-var listButton = '<button type="button" class="btn btn-primary">+ Add Item</button>';
-var item = '<div class="item"><input type="checkbox"></div>';
-
 // current row we are on
 // track so we know where to place the next  to do list
-var numRows = 0;
+var currentRow = 1;
+var numItems = 0;
+
+
+// generates the element object for a row
+// returns the element object
+function createRow() {
+  var row = document.createElement("div");
+  var rowClass = document.createAttribute("class");
+  rowClass.value = "row";
+  row.setAttributeNode(rowClass);
+  return row;
+}
+
+// inserts the row element object into the container
+function insertRow() {
+  var main = document.getElementById('main');
+  var row = createRow();
+  main.appendChild(row);
+}
+
 
 // constructs the html for a list
 function createList() {
@@ -14,14 +29,22 @@ function createList() {
   var listClass = document.createAttribute("class");       // Create a "class" attribute
   listClass.value = "col-sm";                           // Set the value of the class attribute
   list.setAttributeNode(listClass);
-  list.innerHTML = '<div class="to-do"><div class="complete"><i class="fas fa-check"></i></div></div>';
+  list.innerHTML = '<div class="card to-do"><div class="complete"><i class="fas fa-check"></i></div></div>';
+  return list;
 }
+
 
 // inserts the newly-created list
 // tracks which row we are on, adds new rows as needed
 function insertList() {
   var rows = document.querySelectorAll(".container .row");
-  console.log(rows);
+  var list = createList();
+  var capacity = rows.length * 3;
+  if (numItems > capacity) {
+    insertRow();
+    currentRow += 1;
+  }
+  rows[currentRow - 1].appendChild(list);
 }
 
 // remove a list
@@ -38,9 +61,9 @@ function createItem() {
 function main() {
   // Event Listeners
 
-  // create and insert a list
-  var createButton = document.getElementById("create-list");
-  createButton.addEventListener("click", function(){
+  // bind handler for creating and inserting a list
+  var createListButton = document.getElementById("create-list");
+  createListButton.addEventListener("click", function(){
     createList();
     insertList();
   });
@@ -49,9 +72,11 @@ function main() {
 
 
   // create and insert an item
+  var createItem = document.getElementById('create-item');
+  createListButton.addEventListener("click", function(){
+    createItem();
+  });
 
-
-  //
 }
 
 // run main program
