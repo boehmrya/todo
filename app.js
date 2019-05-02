@@ -22,7 +22,6 @@ function insertRow() {
   main.appendChild(row);
 }
 
-
 // constructs the html for a list
 function createList() {
   var list = document.createElement("div");
@@ -32,7 +31,6 @@ function createList() {
   list.innerHTML = '<div class="card to-do"><div class="complete"><i class="fas fa-check"></i></div></div>';
   return list;
 }
-
 
 // inserts the newly-created list
 // tracks which row we are on, adds new rows as needed
@@ -52,10 +50,35 @@ function deleteList() {
 
 }
 
-//
+// create the new item element with the text
+// from the current input element
 function createItem() {
-  var text = document.getElementById('text-input').value;
-  var list = document.createElement("div");
+  // get form value and create new to do item element with it
+  var textInput = document.getElementById("text-input");
+  var text = textInput.value;
+  var item = document.createElement("div");
+  var textNode = document.createTextNode(text);  // Create a text node
+  item.appendChild(textNode);
+
+  // clear the form input's value
+  textInput.value = '';
+
+  // add the class attribute to the newly created element
+  var itemClass = document.createAttribute("class");
+  itemClass.value = "item text";
+  item.setAttributeNode(itemClass);
+  return item;
+}
+
+// handle inserting the newly created to do list item
+// into the list above the input field.
+function insertItem() {
+
+}
+
+// remove an item
+function deleteItem() {
+
 }
 
 // set up initial scaffolding of the page
