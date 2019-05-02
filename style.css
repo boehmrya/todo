@@ -2,6 +2,12 @@
   margin: 20px 0;
   text-align: center;
 }
+.to-do {
+  padding: 20px;
+}
+.to-do .btn {
+  vertical-align: top;
+}
 .to-do .form-control {
   display: inline-block;
   width: auto;

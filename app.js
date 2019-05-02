@@ -54,7 +54,8 @@ function deleteList() {
 
 //
 function createItem() {
-
+  var text = document.getElementById('text-input').value;
+  var list = document.createElement("div");
 }
 
 // set up initial scaffolding of the page
@@ -63,10 +64,7 @@ function main() {
 
   // bind handler for creating and inserting a list
   var createListButton = document.getElementById("create-list");
-  createListButton.addEventListener("click", function(){
-    createList();
-    insertList();
-  });
+  createListButton.addEventListener("click", insertList);
 
   // delete and remove a list
 
