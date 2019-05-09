@@ -28,7 +28,7 @@ function createList() {
   var listClass = document.createAttribute("class");       // Create a "class" attribute
   listClass.value = "col-sm";                           // Set the value of the class attribute
   list.setAttributeNode(listClass);
-  list.innerHTML = '<div class="card to-do"><div class="complete"><i class="fas fa-check"></i></div></div>';
+  list.innerHTML = '<div class="card to-do"><div class="complete"><i class="fas fa-times"></i></div></div>';
   return list;
 }
 
@@ -36,6 +36,7 @@ function createList() {
 // tracks which row we are on, adds new rows as needed
 function insertList() {
   var rows = document.querySelectorAll(".container .row");
+  console.log(rows);
   var list = createList();
   var capacity = rows.length * 3;
   if (numItems > capacity) {
@@ -53,10 +54,30 @@ function deleteList() {
 // create the new item element with the text
 // from the current input element
 function createItem() {
+  // erase validation text if it exists
+
   // get form value and create new to do item element with it
   var textInput = document.getElementById("text-input");
   var text = textInput.value;
-  var item = document.createElement("div");
+  if (text.length == 0) {
+    // create  validation text and insert below the text input field, then return
+
+  }
+  else {
+    // create item text wrapper
+    var item = document.createElement("div");
+    var itemClass = document.createAttribute("class");
+    itemClass.value = "item wrap";
+    item.setAttributeNode(itemClass);
+
+    // create div for item text
+    var item = document.createElement("div");
+    var itemClass = document.createAttribute("class");
+    itemClass.value = "text";
+    item.setAttributeNode(itemClass);
+  }
+
+  item.innerHTML = '<div class="complete"><i class="fas fa-times"></i></div>';
   var textNode = document.createTextNode(text);  // Create a text node
   item.appendChild(textNode);
 
@@ -64,16 +85,12 @@ function createItem() {
   textInput.value = '';
 
   // add the class attribute to the newly created element
-  var itemClass = document.createAttribute("class");
-  itemClass.value = "item text";
-  item.setAttributeNode(itemClass);
-  return item;
-}
 
-// handle inserting the newly created to do list item
-// into the list above the input field.
-function insertItem() {
 
+  // insert new item directly above the input element
+  itemInput = textInput.parentNode;
+  itemInput.insertAdjacentElement("beforebegin", item);
+  numItems += 1;
 }
 
 // remove an item
@@ -86,17 +103,22 @@ function main() {
   // Event Listeners
 
   // bind handler for creating and inserting a list
-  var createListButton = document.getElementById("create-list");
-  createListButton.addEventListener("click", insertList);
+  var createListButton = document.querySelector('#create-list');
+  if (createListButton) {
+    createListButton.addEventListener('click', insertList);
+  }
+
+  // create and insert an item
+  var addItem = document.querySelector('#create-item');
+  if (addItem) {
+    addItem.addEventListener("click", createItem);
+  }
+
 
   // delete and remove a list
 
 
-  // create and insert an item
-  var createItem = document.getElementById('create-item');
-  createListButton.addEventListener("click", function(){
-    createItem();
-  });
+
 
 }
 

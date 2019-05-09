@@ -12,6 +12,6 @@
   display: inline-block;
   width: auto;
 }
-.to-do .item {
+.to-do .item.input {
   text-align: center;
 }
