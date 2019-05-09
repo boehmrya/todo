@@ -61,7 +61,16 @@ function createItem() {
   var text = textInput.value;
   if (text.length == 0) {
     // create  validation text and insert below the text input field, then return
+    var warningEl = document.createElement("div");
+    var warningClass = document.createAttribute("class");
+    warningClass.value = "warning";
+    warningEl.setAttributeNode(warningClass);
+    var warningText = 'Enter text into the field';
+    var warningTextNode = document.createTextNode(warningText);  // Create a text node
+    warningEl.appendChild(warningTextNode);
 
+    // add warning text to the
+    textInput.insertAdjacentElement("afterend", warningEl);
   }
   else {
     // create item text wrapper
