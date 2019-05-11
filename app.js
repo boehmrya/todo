@@ -51,55 +51,73 @@ function deleteList() {
 
 }
 
+// create a warning
+function createWarningText() {
+  var warningEl = document.createElement("div");
+  var warningClass = document.createAttribute("class");
+  warningClass.value = "warning";
+  warningEl.setAttributeNode(warningClass);
+  var warningText = 'Enter text into the field';
+  var warningTextNode = document.createTextNode(warningText);  // Create a text node
+  warningEl.appendChild(warningTextNode);
+  return warningEl;
+}
+
+
 // create the new item element with the text
 // from the current input element
 function createItem() {
-  // erase validation text if it exists
-
   // get form value and create new to do item element with it
   var textInput = document.getElementById("text-input");
+  itemInput = textInput.parentNode;
   var text = textInput.value;
-  if (text.length == 0) {
-    // create  validation text and insert below the text input field, then return
-    var warningEl = document.createElement("div");
-    var warningClass = document.createAttribute("class");
-    warningClass.value = "warning";
-    warningEl.setAttributeNode(warningClass);
-    var warningText = 'Enter text into the field';
-    var warningTextNode = document.createTextNode(warningText);  // Create a text node
-    warningEl.appendChild(warningTextNode);
 
-    // add warning text to the
-    textInput.insertAdjacentElement("afterend", warningEl);
+  // erase validation text if it exists
+  var warningMessage = document.querySelector('.warning');
+  if (warningMessage != null) {
+    itemInput.removeChild(warningMessage);
+  }
+
+  if (text.length == 0) {
+    // create  validation text
+    var warningEl = createWarningText();
+
+    // add warning text below the input field
+    itemInput.appendChild(warningEl);
   }
   else {
     // create item text wrapper
-    var item = document.createElement("div");
-    var itemClass = document.createAttribute("class");
-    itemClass.value = "item wrap";
-    item.setAttributeNode(itemClass);
+    var itemWrap = document.createElement("div");
+    var itemWrapClass = document.createAttribute("class");
+    itemWrapClass.value = "item wrap";
+    itemWrap.setAttributeNode(itemWrapClass);
 
     // create div for item text
     var item = document.createElement("div");
     var itemClass = document.createAttribute("class");
     itemClass.value = "text";
     item.setAttributeNode(itemClass);
+    var textNode = document.createTextNode(text);  // Create a text node
+    item.appendChild(textNode);
+
+    // create div for close sign
+    var complete = document.createElement("div");
+    var completeClass = document.createAttribute("class");
+    completeClass.value = "complete";
+    complete.setAttributeNode(completeClass);
+    complete.innerHTML = '<i class="fas fa-times"></i>';
+
+    // put divs together
+    itemWrap.appendChild(item);
+    itemWrap.appendChild(complete);
+
+    // clear the form input's value
+    textInput.value = '';
+
+    // insert new item directly above the input element
+    itemInput.insertAdjacentElement("beforebegin", itemWrap);
+    numItems += 1;
   }
-
-  item.innerHTML = '<div class="complete"><i class="fas fa-times"></i></div>';
-  var textNode = document.createTextNode(text);  // Create a text node
-  item.appendChild(textNode);
-
-  // clear the form input's value
-  textInput.value = '';
-
-  // add the class attribute to the newly created element
-
-
-  // insert new item directly above the input element
-  itemInput = textInput.parentNode;
-  itemInput.insertAdjacentElement("beforebegin", item);
-  numItems += 1;
 }
 
 // remove an item

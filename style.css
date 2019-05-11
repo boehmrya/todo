@@ -11,7 +11,23 @@
 .to-do .form-control {
   display: inline-block;
   width: auto;
+  min-width: 235px;
+  float: left;
+  margin-right: 16px;
 }
 .to-do .item.input {
   text-align: center;
+}
+.item.wrap {
+  padding: .375rem .75rem;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  margin-bottom: 20px;
+}
+.item.wrap .text {
+  float: left;
+}
+.item.wrap .complete {
+  float: right;
 }
