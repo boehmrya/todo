@@ -120,8 +120,9 @@ function createItem() {
 }
 
 // remove an item
-function removeItem() {
-  var completeItem = event.target;
+function removeItem(node) {
+  var completeItem = node.parentNode;
+  //console.log(completeItem);
   completeItem.parentNode.removeChild(completeItem);
 }
 
@@ -141,11 +142,15 @@ function main() {
     addItem.addEventListener("click", createItem);
   }
 
-  // delete and remove item
-  var deleteItem = document.querySelectorAll('.complete');
-  if (deleteItem) {
-    deleteItem.addEventListener('click', removeItem);
-  }
+  // handle events for dynamically-created elements
+  document.querySelector('body').addEventListener('click', function(event) {
+    if (event.target.classList[1] === 'fa-times') {
+      var parent = event.target.parentNode;
+      if (parent.classList[0] === 'complete') {
+        removeItem(parent);
+      }
+    }
+  });
 
   // delete and remove a list
 
