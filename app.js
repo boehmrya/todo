@@ -36,7 +36,6 @@ function createList() {
 // tracks which row we are on, adds new rows as needed
 function insertList() {
   var rows = document.querySelectorAll(".container .row");
-  console.log(rows);
   var list = createList();
   var capacity = rows.length * 3;
   if (numItems > capacity) {
@@ -121,8 +120,9 @@ function createItem() {
 }
 
 // remove an item
-function deleteItem() {
-
+function removeItem() {
+  var completeItem = event.target;
+  completeItem.parentNode.removeChild(completeItem);
 }
 
 // set up initial scaffolding of the page
@@ -141,6 +141,11 @@ function main() {
     addItem.addEventListener("click", createItem);
   }
 
+  // delete and remove item
+  var deleteItem = document.querySelectorAll('.complete');
+  if (deleteItem) {
+    deleteItem.addEventListener('click', removeItem);
+  }
 
   // delete and remove a list
 

@@ -30,4 +30,5 @@
 }
 .item.wrap .complete {
   float: right;
+  cursor: pointer;
 }
