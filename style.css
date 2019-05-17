@@ -2,12 +2,19 @@
   margin: 20px 0;
   text-align: center;
 }
+
+.to-do-wrap {
+  margin: 0 auto;
+}
+
 .to-do {
   padding: 20px;
 }
+
 .to-do .btn {
   vertical-align: top;
 }
+
 .to-do .form-control {
   display: inline-block;
   width: auto;
@@ -15,9 +22,11 @@
   float: left;
   margin-right: 16px;
 }
+
 .to-do .item.input {
   text-align: center;
 }
+
 .item.wrap {
   padding: .375rem .75rem;
   background-clip: padding-box;
@@ -25,10 +34,19 @@
   border-radius: .25rem;
   margin-bottom: 20px;
 }
+
 .item.wrap .text {
   float: left;
 }
+
 .item.wrap .complete {
   float: right;
   cursor: pointer;
+}
+
+.warning {
+  color: red;
+  font-size: 13px;
+  text-align: left;
+  margin-top: 5px;
 }

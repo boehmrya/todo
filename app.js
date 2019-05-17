@@ -4,7 +4,6 @@
 var currentRow = 1;
 var numItems = 0;
 
-
 // generates the element object for a row
 // returns the element object
 function createRow() {
@@ -22,34 +21,6 @@ function insertRow() {
   main.appendChild(row);
 }
 
-// constructs the html for a list
-function createList() {
-  var list = document.createElement("div");
-  var listClass = document.createAttribute("class");       // Create a "class" attribute
-  listClass.value = "col-sm";                           // Set the value of the class attribute
-  list.setAttributeNode(listClass);
-  list.innerHTML = '<div class="card to-do"><div class="complete"><i class="fas fa-times"></i></div></div>';
-  return list;
-}
-
-// inserts the newly-created list
-// tracks which row we are on, adds new rows as needed
-function insertList() {
-  var rows = document.querySelectorAll(".container .row");
-  var list = createList();
-  var capacity = rows.length * 3;
-  if (numItems > capacity) {
-    insertRow();
-    currentRow += 1;
-  }
-  rows[currentRow - 1].appendChild(list);
-}
-
-// remove a list
-function deleteList() {
-
-}
-
 // create a warning
 function createWarningText() {
   var warningEl = document.createElement("div");
@@ -61,7 +32,6 @@ function createWarningText() {
   warningEl.appendChild(warningTextNode);
   return warningEl;
 }
-
 
 // create the new item element with the text
 // from the current input element
@@ -151,10 +121,6 @@ function main() {
       }
     }
   });
-
-  // delete and remove a list
-
-
 
 
 }
